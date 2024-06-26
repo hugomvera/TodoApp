@@ -15,10 +15,12 @@
  */
 package com.hugomvera.TodoListAwesome
 
+import android.Manifest
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -34,19 +36,15 @@ import java.io.File
 class MainActivity : ComponentActivity() {
 
     //lets call the viewmodle here and pass the it to composable arguments
-    private val todoViewModel by  viewModels<WellnessViewModel> ()
+    private val todoViewModel by  viewModels<TodoViewModel> ()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        val requestPermissionLauncher = registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        )
-        { isGranted: Boolean ->
-            if(isGranted){Log.i("Permission","Granted")}
-        else{
-            Log.i("Permission","Denied")
-        }}
+
+
+
+
 
         //TODO want to see if i can read teh fiel
 
@@ -57,14 +55,50 @@ class MainActivity : ComponentActivity() {
 
 
         super.onCreate(savedInstanceState)
+
+
+
         setContent {
             BasicStateCodelabTheme {
+
+
+//                val writinPermissionResultLauncher = rememberLauncherForActivityResult(
+//                    contract = ActivityResultContracts.RequestPermission(),
+//                    onResult = { isGranted ->
+//                        todoViewModel.onPermissionResult(
+//                            permission =  Manifest.permission.READ_EXTERNAL_STORAGE,
+//                            isGranted =  isGranted)
+//                    }
+//                )
+//
+//
+//               // writinPermissionResultLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+//
+//
+//                val requestPermissionLauncher = registerForActivityResult(
+//                    ActivityResultContracts.RequestPermission()
+//                )
+//                { isGranted: Boolean ->
+//                    if(isGranted){Log.i("Permission","Granted")}
+//                    else{
+//                        Log.i("Permission","Denied")
+//                        //TODO guess could ask for permisison here
+//                      //  writinPermissionResultLauncher.launch(android.Manifest.permission.CAMERA)
+//                    }}
+
+
+
+
+
+
+
+
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    WellnessScreen(modifier = Modifier,todoViewModel)
+                    TodoScreen(modifier = Modifier,todoViewModel)
                 }
             }
         }

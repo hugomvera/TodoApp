@@ -20,7 +20,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 
 
-class WellnessTask(
+class TodoTask(
     val id: Int,
     val label: String,
     initialChecked: Boolean = false

@@ -15,6 +15,10 @@
  */
 package com.hugomvera.TodoListAwesome
 
+import android.content.pm.PackageManager
+import android.util.Log
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -28,14 +32,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 var textGlobal = ""
 
 @Composable
-fun StatefulCounter(modifier: Modifier = Modifier) {
-     val wellnessViewModel: WellnessViewModel = viewModel()
+fun StatefulCounter(
+                     todoViewModel: TodoViewModel = viewModel(),
+                     modifier: Modifier = Modifier
+) {
+
     var count by rememberSaveable { mutableStateOf(30) }
     StatelessCounter(
 
@@ -44,8 +53,8 @@ fun StatefulCounter(modifier: Modifier = Modifier) {
         onIncrement = {
 
 
-            val item = WellnessTask(count, textGlobal, false)
-            wellnessViewModel.add( item)
+            val item = TodoTask(count, textGlobal, false)
+            todoViewModel.add( item)
             count++;
                       },
         modifier = modifier
@@ -53,11 +62,73 @@ fun StatefulCounter(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun StatelessCounter(count: Int, onIncrement: () -> Unit, modifier: Modifier = Modifier) {
+fun StatelessCounter(count: Int
+                     ,onIncrement: () -> Unit, modifier: Modifier = Modifier
+                    ,todoViewModel: TodoViewModel = viewModel()
+) {
     Column(modifier = modifier.padding(16.dp)) {
         if (count > 0) {
            // Text("You've had $count glasses.")
         }
+
+
+
+
+//TODO MIGHT NOT NEED PERMISSIONS FOR ROOM DATABASE
+//
+//
+//        val dialogQueue = todoViewModel.visiblePermissionQueue
+//
+//        val cameraPermissionResultLauncher = rememberLauncherForActivityResult(
+//            contract = ActivityResultContracts.RequestPermission(),
+//            onResult = { isGranted ->
+//                todoViewModel.onPermissionResult(
+//                    permission =  android.Manifest.permission.READ_EXTERNAL_STORAGE,
+//                    isGranted =  isGranted)
+//            }
+//        )
+//
+//        Button(
+//            onClick = {
+//                cameraPermissionResultLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+//            }
+//        ) {
+//            Text(text = "Check and Request Permission")
+//        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//                val requestPermissionLauncher = registerForActivityResult(
+//                    ActivityResultContracts.RequestPermission()
+//                )
+//                { isGranted: Boolean ->
+//                    if(isGranted){Log.i("Permission","Granted")}
+//                    else{
+//                        Log.i("Permission","Denied")
+//                       //TODO guess could ask for permisison here
+//                      //  writinPermissionResultLauncher.launch(android.Manifest.permission.CAMERA)
+//                    }}
+
+
+
+
+
+
+
+        //can probably add button here to ask for permission read and write
+
+
 
         Row(modifier = modifier.padding(16.dp)) {
             Button(

@@ -29,7 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun WellnessTaskItem(
+fun TodoTaskItem(
     taskName: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,

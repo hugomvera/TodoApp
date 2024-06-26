@@ -21,11 +21,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun WellnessTasksList(
-    list: List<WellnessTask>,
-    onCheckedTask: (WellnessTask, Boolean) -> Unit,
-    onCloseTask: (WellnessTask) -> Unit,
-    onAddTask: (WellnessTask) -> Unit,
+fun TodoTasksList(
+    list: List<TodoTask>,
+    onCheckedTask: (TodoTask, Boolean) -> Unit,
+    onCloseTask: (TodoTask) -> Unit,
+    onAddTask: (TodoTask) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -40,7 +40,7 @@ fun WellnessTasksList(
              */
             key = { task -> task.id }
         ) { task ->
-            WellnessTaskItem(
+            TodoTaskItem(
                 taskName = task.label,
                 checked = task.checked,
                 onCheckedChange = { checked -> onCheckedTask(task, checked) },

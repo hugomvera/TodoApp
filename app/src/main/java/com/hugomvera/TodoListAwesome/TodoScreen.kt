@@ -21,23 +21,23 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun WellnessScreen(
+fun TodoScreen(
     modifier: Modifier = Modifier,
-    wellnessViewModel: WellnessViewModel = viewModel()
+    todoViewModel: TodoViewModel = viewModel()
 ) {
     Column(modifier = modifier) {
-        StatefulCounter()
+        StatefulCounter(todoViewModel)
 
-        WellnessTasksList(
-            list = wellnessViewModel.tasks,
+        TodoTasksList(
+            list = todoViewModel.tasks,
             onCheckedTask = { task, checked ->
-                wellnessViewModel.changeTaskChecked(task, checked)
+                todoViewModel.changeTaskChecked(task, checked)
             },
             onCloseTask = { task ->
-                wellnessViewModel.remove(task)
+                todoViewModel.remove(task)
             },
             //TODO probably add tak here
-            onAddTask = { task -> wellnessViewModel.add(task)
+            onAddTask = { task -> todoViewModel.add(task)
             }
         )
     }
