@@ -29,6 +29,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.room.Room
+import com.hugomvera.TodoListAwesome.DataBase.TodoDatabase
 import com.hugomvera.TodoListAwesome.ui.theme.BasicStateCodelabTheme
 import java.io.BufferedReader
 import java.io.File
@@ -39,10 +41,21 @@ class MainActivity : ComponentActivity() {
     private val todoViewModel by  viewModels<TodoViewModel> ()
 
 
+    //creating an instance of the doa
+
+
+    companion object {
+        lateinit var todoDatabase: TodoDatabase
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
-
+        todoDatabase = Room.databaseBuilder(
+            applicationContext,
+            TodoDatabase::class.java,
+            "Todo_DB"
+        ).build()
 
 
 

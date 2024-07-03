@@ -45,11 +45,11 @@ fun StatefulCounter(
                      modifier: Modifier = Modifier
 ) {
 
-    var count by rememberSaveable { mutableStateOf(30) }
+    var count by rememberSaveable { mutableStateOf(32) }
     StatelessCounter(
 
         //TODO need to change this so the count is up to date
-        count = 30,
+        count = 32,
         onIncrement = {
 
 

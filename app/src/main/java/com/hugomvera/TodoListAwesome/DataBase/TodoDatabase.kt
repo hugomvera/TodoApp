@@ -10,6 +10,6 @@ abstract class TodoDatabase: RoomDatabase() {
 
     }
 
-    abstract fun todoDao(): TodoDao
+    abstract fun getTodoDao(): TodoDao
 
 }
